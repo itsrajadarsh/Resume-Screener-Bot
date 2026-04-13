@@ -1,0 +1,25 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Resume Screener Bot — Python Dependencies
+# ──────────────────────────────────────────────────────────────────────────────
+# Install inside a virtual environment:
+#   python3 -m venv venv
+#   source venv/bin/activate        # Windows: venv\\Scripts\\activate
+#   pip install -r requirements.txt
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ── Console UI ────────────────────────────────────────────────────────────────
+rich>=13.7.0                  # Beautiful terminal output: panels, tables, progress bars
+
+# ── PDF Parsing ───────────────────────────────────────────────────────────────
+PyMuPDF>=1.24.0               # Fast PDF text extraction (import as `fitz`)
+
+# ── AI / LLM ─────────────────────────────────────────────────────────────────
+anthropic>=0.25.0             # Anthropic Claude API SDK
+google-genai>=1.0.0           # Google Gemini SDK (new: from google import genai)
+groq>=0.9.0                   # Groq API SDK
+
+# ── Future / Optional (uncomment as needed) ───────────────────────────────────
+# python-dotenv>=1.0.0        # Load API keys from a .env file
+# spacy>=3.7.0                # NLP — NER for structured resume field extraction
+# sentence-transformers>=3.0.0  # Semantic embeddings for skill matching
+
