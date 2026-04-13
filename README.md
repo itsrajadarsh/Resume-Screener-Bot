@@ -153,16 +153,13 @@ Resume-Screener-Bot/
 
 ## 🖼 Screenshots
 
-> _Add screenshots of the running application here._
-
 | Screen | Preview |
 |---|---|
-| Welcome Banner | _(screenshot)_ |
-| Provider Selection | _(screenshot)_ |
-| Resume Parsed Summary | _(screenshot)_ |
-| Screening Results | _(screenshot)_ |
-| Cover Letter Panel | _(screenshot)_ |
-| Session Summary | _(screenshot)_ |
+| Welcome Banner | ![Welcome Banner](screenshots/Welcome_Banner.png) |
+| Provider Selection | ![Provider Selection](screenshots/Provider_Selection.png) |
+| Resume Parsed Summary | ![Resume Parsed Summary](screenshots/Resume_Parsed_Summary.png) |
+| Screening Results | ![Screening Results](screenshots/Screening_Results.png) |
+| Cover Letter Panel | ![Cover Letter Panel](screenshots/Cover_Letter_Panel.png) |
 
 ---
 
