@@ -1,3 +1,0 @@
-## 2024-04-16 - Cache AI clients to preserve connection pool
-**Learning:** Initializing SDK clients (`anthropic.Anthropic`, `genai.Client`, `Groq`) dynamically on every method call recreates the underlying HTTP client (e.g., `httpx.Client`) and loses connection pooling. This causes significant performance degradation because a new TCP connection and TLS handshake must be established for each API request.
-**Action:** Always cache SDK clients in a global variable or class property after first instantiation so that subsequent requests can reuse the connection pool, substantially improving performance.
