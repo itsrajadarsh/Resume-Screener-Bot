@@ -164,7 +164,8 @@ def _clean_text(text: str) -> str:
 
 def _extract_name(text: str) -> Optional[str]:
     """First non-empty line is almost always the candidate's name."""
-    for line in text.splitlines():
+    for match in re.finditer(r"^.*$", text, re.MULTILINE):
+        line = match.group()
         s = line.strip()
         if s and len(s.split()) >= 2:      # at least two words (First Last)
             return s
