@@ -213,6 +213,9 @@ def _save_cover_letter(
         default=default_name,
     ).strip() or default_name
 
+    # Security: Ensure filename is just a base name to prevent path traversal
+    filename = os.path.basename(filename)
+
     if not filename.endswith(".txt"):
         filename += ".txt"
 
