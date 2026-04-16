@@ -19,6 +19,9 @@ from __future__ import annotations
 import os
 from typing import Any, Dict
 
+# ── Global client cache ───────────────────────────────────────────────────────
+_CLIENTS: Dict[str, Any] = {}
+
 # ── Model identifiers ─────────────────────────────────────────────────────────
 _MODELS = {
     "claude": "claude-3-5-sonnet-20241022",
@@ -84,7 +87,11 @@ def _call_claude(prompt: str) -> str:
     model   = _MODELS["claude"]
 
     try:
-        client = anthropic.Anthropic(api_key=api_key)
+        # Cache client to preserve connection pool between calls
+        if "claude" not in _CLIENTS:
+            _CLIENTS["claude"] = anthropic.Anthropic(api_key=api_key)
+        client = _CLIENTS["claude"]
+
         response = client.messages.create(
             model      = model,
             max_tokens = 1500,
@@ -131,7 +138,10 @@ def _call_gemini(prompt: str) -> str:
     model   = _MODELS["gemini"]
 
     try:
-        client = genai.Client(api_key=api_key)
+        # Cache client to preserve connection pool between calls
+        if "gemini" not in _CLIENTS:
+            _CLIENTS["gemini"] = genai.Client(api_key=api_key)
+        client = _CLIENTS["gemini"]
     except Exception as e:
         raise RuntimeError(f"Gemini: Failed to create client — {e}")
 
@@ -206,7 +216,11 @@ def _call_groq(prompt: str) -> str:
     model   = _MODELS["groq"]
 
     try:
-        client = Groq(api_key=api_key)
+        # Cache client to preserve connection pool between calls
+        if "groq" not in _CLIENTS:
+            _CLIENTS["groq"] = Groq(api_key=api_key)
+        client = _CLIENTS["groq"]
+
         response = client.chat.completions.create(
             model      = model,
             messages   = [{"role": "user", "content": prompt}],
