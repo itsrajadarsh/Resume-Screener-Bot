@@ -192,8 +192,10 @@ def _extract_section(text: str, heading: str) -> List[str]:
     all-caps heading or end-of-text.
     """
     # Match section heading (case-insensitive, possibly followed by : or newline)
+    # The lookahead (?=\n[A-Z]{3,}) must be case-sensitive to avoid stopping
+    # at lowercase words. We also ensure the heading is on its own line.
     pattern = re.compile(
-        rf"(?im)^{re.escape(heading)}[\s:]*\n(.*?)(?=\n[A-Z]{{3,}}|\Z)",
+        rf"(?m)^(?i:{re.escape(heading)})[\s:]*\n(.*?)(?=\n[A-Z]{{3,}}[\s:]*(?:\n|\Z)|\Z)",
         re.DOTALL,
     )
     m = pattern.search(text)
